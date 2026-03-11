@@ -1,0 +1,14 @@
+language: ja
+reviews:
+  auto_review:
+    enabled: true
+    base_branches:
+      - main
+  path_filters:
+    - "!Assets/TextMesh Pro/**"
+    - "!Assets/Settings/**"
+    - "!ProjectSettings/**"
+    - "!Packages/**"
+    - "!**/*.meta"
+    - "!**/*.unity"
+    - "!**/*.asset"
