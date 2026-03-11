@@ -1,0 +1,55 @@
+## Unity ##
+*.unity merge=unityyamlmerge eol=lf
+*.prefab merge=unityyamlmerge eol=lf
+*.asset merge=unityyamlmerge eol=lf
+*.meta merge=unityyamlmerge eol=lf
+*.controller merge=unityyamlmerge eol=lf
+*.anim merge=unityyamlmerge eol=lf
+*.overrideController merge=unityyamlmerge eol=lf
+*.physicMaterial merge=unityyamlmerge eol=lf
+*.physicsMaterial2D merge=unityyamlmerge eol=lf
+*.spriteatlas merge=unityyamlmerge eol=lf
+*.mat merge=unityyamlmerge eol=lf
+*.mask merge=unityyamlmerge eol=lf
+*.mesh merge=unityyamlmerge eol=lf
+*.renderTexture merge=unityyamlmerge eol=lf
+*.shadervariants merge=unityyamlmerge eol=lf
+*.cubemap merge=unityyamlmerge eol=lf
+*.flare merge=unityyamlmerge eol=lf
+*.lighting merge=unityyamlmerge eol=lf
+*.terrainlayer merge=unityyamlmerge eol=lf
+
+## Image ##
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.psd binary
+*.tga binary
+*.tif binary
+*.gif binary
+*.bmp binary
+*.exr binary
+*.hdr binary
+
+## Audio ##
+*.mp3 binary
+*.wav binary
+*.ogg binary
+*.aif binary
+
+## Video ##
+*.mp4 binary
+*.mov binary
+*.webm binary
+
+## Fonts ##
+*.ttf binary
+*.otf binary
+
+## 3D ##
+*.fbx binary
+*.obj binary
+
+## Compressed ##
+*.zip binary
+*.unitypackage binary
