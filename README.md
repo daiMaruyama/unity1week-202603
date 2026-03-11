@@ -11,12 +11,17 @@ Unity 1週間ゲームジャム用リポジトリ（2026年3月）
 ## 開発の流れ
 
 ### 作業の進め方
-1. 作業前に **必ず `git pull` する**（他の人の変更を取り込む）
-2. 自分の担当フォルダ内で作業する
-3. 作業が終わったら `git add` → `git commit` → `git push`
+1. `git pull origin main` で最新を取得
+2. ブランチを作る: `git checkout -b feature/名前/内容`
+   - 例: `git checkout -b feature/maruyama/player-movement`
+3. 作業して `git add` → `git commit` → `git push`
+4. GitHubでPRを作る → CodeRabbitが自動レビュー
+5. 問題なければmainにマージ
 
-### ブランチ
-- **main ブランチのみ** で作業します（ブランチ切り替え不要）
+### ブランチ名のルール
+- 機能追加: `feature/名前/内容`（例: `feature/akutsu/enemy-ai`）
+- バグ修正: `fix/名前/内容`（例: `fix/watanabe/jump-bug`）
+- **mainには直接pushしない**
 
 ## C# 命名規則
 

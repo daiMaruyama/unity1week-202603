@@ -22,8 +22,7 @@ Assets/
 ├── Scripts/Utils/     # ユーティリティ
 ├── Settings/          # URP設定
 ├── Sprites/Gameplay/, UI/
-├── VFX/               # パーティクル・エフェクト
-└── _Develop/          # 開発者個人作業フォルダ（Akutsu, Maruyama, Watanabe）
+└── VFX/               # パーティクル・エフェクト
 ```
 
 ## 規約
@@ -32,7 +31,7 @@ Assets/
 - シングルトンは SingletonMonoBehaviour<T> を継承
 - 本番シーンは Scenes/Master/、テスト用は Scenes/Dev/
 - 大容量バイナリアセットは Assets/Ignore/ へ
-- 個人の実験は _Develop/{名前}/ 配下で
+- ブランチ運用: feature/名前/内容、fix/名前/内容 → PRでmainにマージ
 
 ## 技術スタック
 
