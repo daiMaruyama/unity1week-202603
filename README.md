@@ -64,4 +64,4 @@ Unity上では普通に使えるけど、git push しても他の人には共有
 
 ## コードレビュー
 
-PRを作ると [CodeRabbit](https://coderabbit.ai/) が自動でレビューしてくれます。
+PRを作ると [CodeRabbit](https://github.com/apps/coderabbitai) が自動でレビューしてくれます。
