@@ -100,3 +100,6 @@ InitTestScene*.unity*
 
 # ===== Shared assets folder (put large/binary assets here) =====
 /[Aa]ssets/Ignore/
+unity1week-202603.slnx
+.vscode/extensions.json
+.vscode/launch.json
