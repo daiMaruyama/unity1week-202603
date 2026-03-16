@@ -35,6 +35,6 @@ public class GameManager : MonoBehaviour
             await stone.PlayCloseAnimation();
         }
         // ゲームクリア
-        // SceeeneManager.LoadScene("ClearScene");
+        // SceneManager.LoadScene("ClearScene");
     }
 }
