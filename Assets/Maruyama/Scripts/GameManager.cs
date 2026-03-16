@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 public class GameManager : MonoBehaviour
@@ -13,11 +14,12 @@ public class GameManager : MonoBehaviour
 
     private async UniTaskVoid Start()
     {
+        var ct = this.GetCancellationTokenOnDestroy(); // キャンセルトークンを追加
         for (int i = 0; i < totalRounds; i++)
         {
             int correctCount = stone.GetCorrectCount(); // 正解数 Getする
             await stone.PlayOpenAnimation();
-            await UniTask.Delay(TimeSpan.FromSeconds(observeTime));
+            await UniTask.Delay(TimeSpan.FromSeconds(observeTime), cancellationToken: ct);
             await stone.PlayCloseAnimation();
 
             int answer = await numberInput.WaitForInput();
