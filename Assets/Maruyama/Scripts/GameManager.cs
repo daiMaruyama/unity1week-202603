@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 public class GameManager : MonoBehaviour
