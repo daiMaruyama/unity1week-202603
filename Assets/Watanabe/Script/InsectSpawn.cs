@@ -28,9 +28,10 @@ public class InsectSpawn : MonoBehaviour
         int totalCount = Random.Range(min,max + 1);
         //出現させる虫のリスト
         List<InsectData> allTypes = new List<InsectData>() {pillBug };
-        if(otherInsects.Count > 0 && randomTypeCount > 0)
+        int typesToSelect = Mathf.Min(randomTypeCount, otherInsects.Count);
+        if (typesToSelect > 0)
         {
-            while(allTypes.Count -1 < randomTypeCount) //ダンゴムシを除くため-1
+            while(allTypes.Count -1 < typesToSelect) //ダンゴムシを除くため-1
             {
                 InsectData data = otherInsects[Random.Range(0, otherInsects.Count)];
                 if(!allTypes.Contains(data))
@@ -52,7 +53,6 @@ public class InsectSpawn : MonoBehaviour
                 Insect insectComponent = obj.GetComponent<Insect>();
                 if (insectComponent != null)
                     insectComponent.data = allTypes[i];
-
             }
         }
     }
@@ -102,7 +102,7 @@ public class InsectSpawn : MonoBehaviour
 
     /// <summary>
     /// 出題虫を取得
-    /// <summary>
+    /// </summary>
     public InsectData GetQuestionInsect()
     {
         return questionInsect;
