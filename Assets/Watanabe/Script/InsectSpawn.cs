@@ -9,6 +9,7 @@ public class InsectSpawn : MonoBehaviour
     public List<InsectData> otherInsects;
     [Header("生成位置")]
     public Transform spawnArea;
+    public Vector2 spawnRange;
     //生成済みの虫リスト
     private List<GameObject> spawnInsects = new List<GameObject>();
     //問題用の虫と正解数
@@ -45,9 +46,12 @@ public class InsectSpawn : MonoBehaviour
         {
             int count = (i == allTypes.Count - 1) ? remaining : Random.Range(0, remaining + 1);
             remaining -= count;
-            for(int j = 0; j < count; j++)
+            
+            for (int j = 0; j < count; j++)
             {
-                GameObject obj = Instantiate(allTypes[i].prefab,spawnArea);
+                if (!GetRandomPosition(out Vector3 pos))
+                    continue;　
+                GameObject obj = Instantiate(allTypes[i].prefab,pos, Quaternion.identity, spawnArea);
                 spawnInsects.Add(obj);
                 //Insect コンポーネントにデータ紐付け
                 Insect insectComponent = obj.GetComponent<Insect>();
@@ -55,6 +59,34 @@ public class InsectSpawn : MonoBehaviour
                     insectComponent.data = allTypes[i];
             }
         }
+    }
+
+    private bool GetRandomPosition(out Vector3 pos)
+    {
+        for (int i = 0; i < 30; i++) 
+        {
+            pos = spawnArea.position + new Vector3(
+                Random.Range(-spawnRange.x / 2f, spawnRange.x / 2f),
+                Random.Range(-spawnRange.y / 2f, spawnRange.y / 2f),
+                0f
+            );
+
+            bool tooClose = false; //他の虫と指定した距離分空いてるかどうか
+            foreach (var obj in spawnInsects)
+            {
+                if (Vector3.Distance(obj.transform.position, pos) < 0.5f)
+                {
+                    tooClose = true;
+                    break;
+                }
+            }
+
+            if (!tooClose)
+                return true;
+        }
+
+        pos = Vector3.zero;
+        return false; 
     }
 
     /// <summary>

@@ -5,4 +5,5 @@ public class InsectData : ScriptableObject
 {
     public string insectName;
     public GameObject prefab;
+    public Sprite icon;
 }
