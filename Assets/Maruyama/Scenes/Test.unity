@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -733,6 +733,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &657629315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 657629317}
+  - component: {fileID: 657629316}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &657629316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657629315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e968a7ec942c1b748b16bc5e76289db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InsectSpawn
+  pillBug: {fileID: 11400000, guid: 3c1cbc3f1042468479326fae2ca6c896, type: 2}
+  otherInsects:
+  - {fileID: 11400000, guid: 2a46c122694da424bbc7737922084c7f, type: 2}
+  - {fileID: 11400000, guid: 9ff0ffb5b319a514eb4259bcac457141, type: 2}
+  spawnArea: {fileID: 657629317}
+  spawnRange: {x: 5, y: 5}
+--- !u!4 &657629317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657629315}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.07, y: 0.47, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &703949903
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,8 +829,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   stone: {fileID: 1046840765}
   numberInput: {fileID: 1067354780}
-  totalRounds: 5
-  observeTime: 2
+  spawner: {fileID: 657629316}
+  rounds:
+  - min: 3
+    max: 10
+    randomTypeCount: 0
+    observeTime: 2
+  - min: 15
+    max: 20
+    randomTypeCount: 1
+    observeTime: 3
+  - min: 20
+    max: 40
+    randomTypeCount: 2
+    observeTime: 3
 --- !u!1 &725045970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,7 +1109,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.16, y: -0.02, z: 0}
-  m_LocalScale: {x: 2.2446659, y: 1.8171104, z: 1.5269835}
+  m_LocalScale: {x: 4.34, y: 2.74, z: 1.5269835}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1068,7 +1130,7 @@ MonoBehaviour:
   openEase: 27
   closeEase: 26
   fadeEase: 1
-  moveDistance: 2
+  moveDistance: 6
   animDuration: 0.5
 --- !u!1 &1067354779
 GameObject:
@@ -1306,7 +1368,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.93962264, g: 0.64694047, b: 0.3740761, a: 1}
@@ -2432,6 +2494,7 @@ SceneRoots:
   - {fileID: 606262400}
   - {fileID: 502596635}
   - {fileID: 703949904}
+  - {fileID: 657629317}
   - {fileID: 1067354781}
   - {fileID: 1275333098}
   - {fileID: 1046840764}
