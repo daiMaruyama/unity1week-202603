@@ -9,7 +9,7 @@ public class QuestionUI : MonoBehaviour
     [SerializeField] private GameObject answerPanel;       // パネル全体
     [SerializeField] private TextMeshProUGUI insectText;   // テキスト
     [SerializeField] private Image insectImage;            // 虫の画像
-    [SerializeField] private GameObject proglemText;
+    [SerializeField] private GameObject problemText;
     [SerializeField] private GameObject answerText;
 
     /// <summary>
@@ -23,7 +23,7 @@ public class QuestionUI : MonoBehaviour
         answerPanel.SetActive(true);
         insectText.text = $"{insect.insectName}は何匹？";
         insectImage.sprite = insect.icon;
-        if (proglemText != null) proglemText.SetActive(true);
+        if (problemText != null) problemText.SetActive(true);
         if (answerText != null) answerText.SetActive(false);
     }
 
@@ -38,7 +38,7 @@ public class QuestionUI : MonoBehaviour
         answerPanel.SetActive(true);
         insectText.text = $"{insect.insectName}は{correctCount}匹！";
         insectImage.sprite = insect.icon;
-        if (proglemText != null) proglemText.SetActive(false);
+        if (problemText != null) problemText.SetActive(false);
         if (answerText != null) answerText.SetActive(true);
     }
 

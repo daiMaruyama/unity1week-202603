@@ -42,6 +42,13 @@ public class InsectSpawn : MonoBehaviour
 
         int typeCount = allTypes.Count;
 
+        // totalCount が typeCount より少ない場合は調整
+        if (totalCount < typeCount)
+        {
+            typeCount = totalCount;
+            allTypes = allTypes.GetRange(0, typeCount);
+        }
+
         // 各種類にまず1匹ずつ割り振る（totalCount が少ない場合は最小値で調整）
         int remaining = totalCount - typeCount;
         int[] counts = new int[typeCount];

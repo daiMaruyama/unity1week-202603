@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class RundUI : MonoBehaviour
+public class RoundUI : MonoBehaviour
 {
     public TMP_Text roundText;
     public GameManager gameManager;
