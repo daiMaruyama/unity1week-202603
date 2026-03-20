@@ -2,28 +2,13 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Core;
 
-public class FadeManager : MonoBehaviour
+public class FadeManager : SingletonMonoBehaviour<FadeManager>
 {
-    public static FadeManager Instance;
-
     [SerializeField] CanvasGroup _fadeCanvasGroup;
     [SerializeField] float _fadeDuration = 1.0f;
     bool _isFading = false;
-
-    private void Awake()
-    {
-        if (!Instance)
-        {
-            Instance = this;
-            DontDestroyOnLoad(transform.root.gameObject);
-        }
-        else
-        {
-            Destroy(transform.root.gameObject);
-            return;
-        }
-    }
 
     private void OnEnable()
     {
