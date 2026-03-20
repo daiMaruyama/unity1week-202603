@@ -36,12 +36,12 @@ public class StoneController : MonoBehaviour
 
     public async UniTask MakeTransparency()
     {
-        await FadeStone(0.2f, 2f);
+        await FadeStone(0.2f, 2f).ToUniTask();
     }
 
     public async UniTask ResetTransparency()
     {
-        await FadeStone(1f, transparencyDuration);
+        await FadeStone(1f, transparencyDuration).ToUniTask();
     }
 
     private Tween FadeStone(float targetAlpha, float duration)
