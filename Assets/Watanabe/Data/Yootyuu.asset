@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1827521fa02e0604ca97d33ee1a34fb8, type: 3}
-  m_Name: Earthworm
-  m_EditorClassIdentifier: Assembly-CSharp::InsentData
-  insectName: "\u30DF\u30DF\u30BA"
-  prefab: {fileID: 4970083329066236277, guid: 9698c1adf04d4044994985beb1b79381, type: 3}
-  icon: {fileID: 21300000, guid: d9e1bfa922066904e9efee2ef4b52c37, type: 3}
+  m_Name: Yootyuu
+  m_EditorClassIdentifier: Assembly-CSharp::InsectData
+  insectName: "\u5E7C\u866B"
+  prefab: {fileID: 7203862921778846722, guid: 13612723a9acea24bbec59c870a512bd, type: 3}
+  icon: {fileID: 21300000, guid: fa7caaa78be57f7429d9770eb08b42d3, type: 3}

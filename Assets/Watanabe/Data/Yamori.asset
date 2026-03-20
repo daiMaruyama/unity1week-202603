@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1827521fa02e0604ca97d33ee1a34fb8, type: 3}
-  m_Name: Earthworm
-  m_EditorClassIdentifier: Assembly-CSharp::InsentData
-  insectName: "\u30DF\u30DF\u30BA"
-  prefab: {fileID: 4970083329066236277, guid: 9698c1adf04d4044994985beb1b79381, type: 3}
-  icon: {fileID: 21300000, guid: d9e1bfa922066904e9efee2ef4b52c37, type: 3}
+  m_Name: Yamori
+  m_EditorClassIdentifier: Assembly-CSharp::InsectData
+  insectName: "\u30E4\u30E2\u30EA"
+  prefab: {fileID: 7709504964346802032, guid: 96b5dd37fde6c4141b11d8f0af3c6388, type: 3}
+  icon: {fileID: 21300000, guid: 2da417ef6f8369a4a93afc56fdda7f78, type: 3}
