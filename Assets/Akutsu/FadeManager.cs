@@ -9,14 +9,13 @@ public class FadeManager : MonoBehaviour
 
     [SerializeField] CanvasGroup _fadeCanvasGroup;
     [SerializeField] float _fadeDuration = 1.0f;
+    bool _isFading = false;
 
     private void Awake()
     {
-        // シングルトン設定：これ一つだけを生き残らせる
-        if (Instance == null)
+        if (!Instance)
         {
             Instance = this;
-            // パネルの親（Canvasなど）ごと壊れないようにする
             DontDestroyOnLoad(transform.root.gameObject);
         }
         else
@@ -28,31 +27,33 @@ public class FadeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // シーン読み込み完了イベントにメソッドを登録
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded; // シーン読み込み完了イベントにメソッドを登録
     }
 
     private void OnDisable()
     {
-        // オブジェクトが消えるときは登録を解除
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= OnSceneLoaded; // オブジェクトが消えるときは登録を解除
     }
 
-    // シーンが切り替わるたびに自動で呼ばれる
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 前のフェードが動いていたら止めて、新しくフェードインを開始
-        StopAllCoroutines();
+        StopAllCoroutines(); // 前のフェードが動いていたら止めて、新しくフェードインを開始
         StartCoroutine(FadeIn());
     }
 
-    public void StartFadeOutAndLoadScene(string sceneName)
+    public void StartFadeOutAndLoadScene(string sceneName) // ボタン
     {
+        if(_isFading)
+        {
+            return;
+        }
         StartCoroutine(FadeAndLeave(sceneName));
     }
 
     private IEnumerator FadeAndLeave(string sceneName)
     {
+        _isFading = true;
+
         float timer = 0;
         _fadeCanvasGroup.blocksRaycasts = true;
 
@@ -68,6 +69,8 @@ public class FadeManager : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
+        _isFading = true;
+
         float timer = _fadeDuration;
         _fadeCanvasGroup.alpha = 1; // 真っ黒からスタート
         _fadeCanvasGroup.blocksRaycasts = true;
@@ -81,5 +84,7 @@ public class FadeManager : MonoBehaviour
 
         _fadeCanvasGroup.alpha = 0;
         _fadeCanvasGroup.blocksRaycasts = false; // 終わったらクリックを通す
+
+        _isFading = false;
     }
 }
