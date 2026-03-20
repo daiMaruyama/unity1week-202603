@@ -5,43 +5,56 @@ using DG.Tweening;
 public class StoneController : MonoBehaviour
 {
     [SerializeField] private Transform stoneTransform;
-    [SerializeField] private Ease openEase = Ease.OutBack;
-    [SerializeField] private Ease closeEase = Ease.InBack;
-    [SerializeField] private Ease fadeEase = Ease.Linear;
+    [SerializeField] private SpriteRenderer stoneRenderer;
     [SerializeField] private float moveDistance = 2f;
-    [SerializeField] private float animDuration = 1.5f;
+    [SerializeField] private float openDuration = 0.5f;
+    [SerializeField] private float closeDuration = 0.5f;
+    [SerializeField] private float transparencyDuration = 1.5f;
+
+    private Vector3 initialPosition;
+
+    private void Start()
+    {
+        initialPosition = stoneTransform.position;
+    }
 
     public async UniTask PlayOpenAnimation()
     {
         await stoneTransform
-            .DOMoveY(stoneTransform.position.y + moveDistance, animDuration)
-            .SetEase(openEase)
+            .DOMoveY(initialPosition.y + moveDistance, openDuration)
+            .SetEase(Ease.OutQuad)
             .ToUniTask();
     }
 
     public async UniTask PlayCloseAnimation()
     {
         await stoneTransform
-            .DOMoveY(stoneTransform.position.y - moveDistance, animDuration)
-            .SetEase(closeEase)
+            .DOMove(initialPosition, closeDuration)
+            .SetEase(Ease.InQuad)
             .ToUniTask();
     }
 
     public async UniTask MakeTransparency()
     {
-        var material = stoneTransform.GetComponent<Renderer>().material;
-        await material
-            .DOFade(0.5f, animDuration)
-            .SetEase(fadeEase)
-            .ToUniTask();
+        await FadeStone(0.2f, 2f);
     }
 
     public async UniTask ResetTransparency()
     {
-        var material = stoneTransform.GetComponent<Renderer>().material;
-        await material
-            .DOFade(1f, animDuration)
-            .SetEase(fadeEase)
-            .ToUniTask();
+        await FadeStone(1f, transparencyDuration);
+    }
+
+    private Tween FadeStone(float targetAlpha, float duration)
+    {
+        return DOTween.To(
+            () => stoneRenderer.color.a,
+            a => {
+                var c = stoneRenderer.color;
+                c.a = a;
+                stoneRenderer.color = c;
+            },
+            targetAlpha,
+            duration
+        );
     }
 }
