@@ -40,20 +40,39 @@ public class InsectSpawn : MonoBehaviour
             }
         }
 
-        //種類ごとに合計数を分配して生成
-        int remaining = totalCount;
-        for(int i = 0; i < allTypes.Count; i++)
+        int typeCount = allTypes.Count;
+
+        // totalCount が typeCount より少ない場合は調整
+        if (totalCount < typeCount)
         {
-            int count = (i == allTypes.Count - 1) ? remaining : Random.Range(0, remaining + 1);
-            remaining -= count;
-            
-            for (int j = 0; j < count; j++)
+            typeCount = totalCount;
+            allTypes = allTypes.GetRange(0, typeCount);
+        }
+
+        // 各種類にまず1匹ずつ割り振る（totalCount が少ない場合は最小値で調整）
+        int remaining = totalCount - typeCount;
+        int[] counts = new int[typeCount];
+        for (int i = 0; i < typeCount; i++)
+            counts[i] = 1;
+
+        // 残りをランダムに割り振る
+        for (int i = 0; i < remaining; i++)
+        {
+            int idx = Random.Range(0, typeCount);
+            counts[idx]++;
+        }
+
+        //生成時に位置をランダム化
+        for (int i = 0; i < typeCount; i++)
+        {
+            for (int j = 0; j < counts[i]; j++)
             {
                 if (!GetRandomPosition(out Vector3 pos))
-                    continue;　
-                GameObject obj = Instantiate(allTypes[i].prefab,pos, Quaternion.identity, spawnArea);
+                    continue;
+
+                GameObject obj = Instantiate(allTypes[i].prefab, pos, Quaternion.identity, spawnArea);
                 spawnInsects.Add(obj);
-                //Insect コンポーネントにデータ紐付け
+
                 Insect insectComponent = obj.GetComponent<Insect>();
                 if (insectComponent != null)
                     insectComponent.data = allTypes[i];
@@ -74,7 +93,7 @@ public class InsectSpawn : MonoBehaviour
             bool tooClose = false; //他の虫と指定した距離分空いてるかどうか
             foreach (var obj in spawnInsects)
             {
-                if (Vector3.Distance(obj.transform.position, pos) < 0.5f)
+                if (Vector3.Distance(obj.transform.position, pos) < 0.6f)
                 {
                     tooClose = true;
                     break;
@@ -148,4 +167,16 @@ public class InsectSpawn : MonoBehaviour
         return correctCount;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        if (spawnArea == null) return;
+
+        // 黄色いワイヤーフレームで範囲を表示
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(spawnArea.position, new Vector3(spawnRange.x, spawnRange.y, 0));
+
+        // 中心点もわかるように小さな球
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(spawnArea.position, 0.1f);
+    }
 }
