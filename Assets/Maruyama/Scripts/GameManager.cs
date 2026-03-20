@@ -11,18 +11,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] private NumberInput numberInput;
     [SerializeField] private InsectSpawn spawner;
     [SerializeField] private RoundData[] rounds;
-
+    [SerializeField] private QuestionUI questionUI;
+    [SerializeField] private GameOverUI gameOverUI;
+    [SerializeField] private RoundUI roundUI;
     private async UniTaskVoid Start()
     {
-        var ct = this.GetCancellationTokenOnDestroy(); // 安全に非同期処理をキャンセルするためのトークン
+        var ct = this.GetCancellationTokenOnDestroy();
 
         for (int i = 0; i < rounds.Length; i++)
         {
             var round = rounds[i];
 
+            // ラウンド表示
+            roundUI.UpdateRound(i + 1, rounds.Length);
+
             // 虫を配置
             spawner.SpawnInsects(round.min, round.max, round.randomTypeCount);
-            Debug.Log($"ラウンド {i + 1}: 虫を配置しました。");
 
             // 観察フェーズ
             await stone.PlayOpenAnimation();
@@ -32,22 +36,24 @@ public class GameManager : MonoBehaviour
             // 出題
             spawner.PickQuestion();
             int correctCount = spawner.GetCorrectCount();
-            Debug.Log($"問題：{spawner.GetQuestionInsect().insectName}、正解数：{correctCount}");
+            InsectData questionInsect = spawner.GetQuestionInsect();
+            questionUI.ShowQuestionInsect(questionInsect);
 
             // 回答待ち
             int answer = await numberInput.WaitForInput();
 
             // 答え合わせ
             await stone.MakeTransparency();
+            questionUI.ShowCorrectCount(questionInsect, correctCount);
 
             if (answer != correctCount)
             {
-                Debug.Log("不正解！ゲームオーバー");
-                return; // 1ミス即終了
+                gameOverUI.GameOver(questionInsect, correctCount);
+                return;
             }
 
             // 次のラウンドへ
-            Debug.Log(i == rounds.Length - 1 ? "全てのラウンドをクリア！おめでとう！" : "正解！次のラウンドへ！");
+            questionUI.HideAnswer();
             await stone.ResetTransparency();
             spawner.Clear();
         }
