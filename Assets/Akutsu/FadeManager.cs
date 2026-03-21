@@ -22,6 +22,7 @@ public class FadeManager : SingletonMonoBehaviour<FadeManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        _isFading = false;
         StopAllCoroutines(); // 前のフェードが動いていたら止めて、新しくフェードインを開始
         StartCoroutine(FadeIn());
     }
