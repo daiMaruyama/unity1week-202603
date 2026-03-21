@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private QuestionUI questionUI;
     [SerializeField] private GameOverUI gameOverUI;
     [SerializeField] private RoundUI roundUI;
+    [SerializeField] private CameraMove cameraMove;
+    [SerializeField] private GameObject clearPanel;
     private async UniTaskVoid Start()
     {
         var ct = this.GetCancellationTokenOnDestroy();
@@ -43,9 +45,9 @@ public class GameManager : MonoBehaviour
             int answer = await numberInput.WaitForInput();
 
             // 答え合わせ
-            await stone.MakeTransparency();
             questionUI.ShowCorrectCount(questionInsect, correctCount);
-
+            await stone.MakeTransparency();
+            
             if (answer != correctCount)
             {
                 gameOverUI.GameOver(questionInsect, correctCount);
@@ -56,6 +58,18 @@ public class GameManager : MonoBehaviour
             questionUI.HideAnswer();
             await stone.ResetTransparency();
             spawner.Clear();
+
+            // ★最後のラウンド以外はカメラ移動
+            if (i < rounds.Length - 1)
+            {
+                await cameraMove.MoveNextArea();
+            }
+            else
+            {
+                // 最後のラウンドならクリアパネル
+                if (clearPanel != null)
+                    clearPanel.SetActive(true);
+            }
         }
     }
 }
