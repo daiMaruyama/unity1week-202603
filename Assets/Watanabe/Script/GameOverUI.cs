@@ -21,13 +21,17 @@ public class GameOverUI : MonoBehaviour
             answerText.text = $"答え\n{insect.insectName}が{correctCount}匹！";
     }
 
-    public void OnStartButton()
+    public async void OnStartButton()
     {
+        SEManager.Instance.PlayButton();
+        await Cysharp.Threading.Tasks.UniTask.Delay(200);
         SceneManager.LoadScene("Title"); // ゲームシーン名に置き換え
     }
 
-    public void OnResturtButton()
+    public async void OnResturtButton()
     {
+        SEManager.Instance.PlayButton();
+        await Cysharp.Threading.Tasks.UniTask.Delay(200);
         SceneManager.LoadScene("GameScene");
     }
 }

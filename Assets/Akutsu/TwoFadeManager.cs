@@ -10,6 +10,7 @@ public class TwoFadeManager : SingletonMonoBehaviour<TwoFadeManager>
     [SerializeField] float _fadeDuration = 1.0f;
 
     bool _isFading = false;
+    public bool IsFading => _isFading;
 
     private void OnEnable()
     {

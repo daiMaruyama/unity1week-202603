@@ -24,6 +24,12 @@ public class GameManager : MonoBehaviour
         {
             var round = rounds[i];
 
+            //フェードを待つ
+            if(TwoFadeManager.Instance != null)
+            {
+                await UniTask.WaitUntil(() => !TwoFadeManager.Instance.IsFading);
+            }
+           
             // ラウンド表示
             roundUI.UpdateRound(i + 1, rounds.Length);
 
@@ -46,6 +52,21 @@ public class GameManager : MonoBehaviour
 
             // 答え合わせ
             questionUI.ShowCorrectCount(questionInsect, correctCount);
+
+            // SEを鳴らす
+            if (answer != correctCount)
+            {
+                SEManager.Instance.PlayWrong(); // 不正解音
+                await stone.MakeTransparency();
+
+                gameOverUI.GameOver(questionInsect, correctCount);
+                return;
+            }
+            else
+            {
+                SEManager.Instance.PlayCorrect(); // 正解音
+            }
+
             await stone.MakeTransparency();
             
             if (answer != correctCount)
