@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -18,5 +19,15 @@ public class GameOverUI : MonoBehaviour
         panel.SetActive(true);
         if (answerText != null && insect != null)
             answerText.text = $"答え\n{insect.insectName}が{correctCount}匹！";
+    }
+
+    public void OnStartButton()
+    {
+        SceneManager.LoadScene("Title"); // ゲームシーン名に置き換え
+    }
+
+    public void OnResturtButton()
+    {
+        SceneManager.LoadScene("GameScene");
     }
 }
