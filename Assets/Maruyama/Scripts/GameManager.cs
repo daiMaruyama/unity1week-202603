@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameOverUI gameOverUI;
     [SerializeField] private RoundUI roundUI;
     [SerializeField] private CameraMove cameraMove;
-    [SerializeField] private GameObject clearPanel;
+    [SerializeField] private ClearUI clearUI;
     private async UniTaskVoid Start()
     {
         var ct = this.GetCancellationTokenOnDestroy();
@@ -24,6 +24,12 @@ public class GameManager : MonoBehaviour
         {
             var round = rounds[i];
 
+            //フェードを待つ
+            if(TwoFadeManager.Instance != null)
+            {
+                await UniTask.WaitUntil(() => !TwoFadeManager.Instance.IsFading);
+            }
+           
             // ラウンド表示
             roundUI.UpdateRound(i + 1, rounds.Length);
 
@@ -46,12 +52,20 @@ public class GameManager : MonoBehaviour
 
             // 答え合わせ
             questionUI.ShowCorrectCount(questionInsect, correctCount);
-            await stone.MakeTransparency();
-            
+
+            // SEを鳴らす
             if (answer != correctCount)
             {
+                SEManager.Instance.PlayWrong(); // 不正解音
+                await stone.MakeTransparency();
+
                 gameOverUI.GameOver(questionInsect, correctCount);
                 return;
+            }
+            else
+            {
+                SEManager.Instance.PlayCorrect(); // 正解音
+                await stone.MakeTransparency();
             }
 
             // 次のラウンドへ
@@ -66,9 +80,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                // 最後のラウンドならクリアパネル
-                if (clearPanel != null)
-                    clearPanel.SetActive(true);
+                clearUI.Show();
             }
         }
     }

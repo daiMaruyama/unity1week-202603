@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine.UI;
@@ -43,12 +43,14 @@ public class NumberInput : MonoBehaviour
     {
         tens = (tens + dir + 10) % 10;
         UpdateDisplay();
+        SEManager.Instance.PlaySelect();
     }
 
     private void ChangeOnes(int dir)
     {
         ones = (ones + dir + 10) % 10;
         UpdateDisplay();
+        SEManager.Instance.PlaySelect();
     }
 
     private void UpdateDisplay()
