@@ -655,6 +655,7 @@ GameObject:
   - component: {fileID: 213056947}
   - component: {fileID: 213056949}
   - component: {fileID: 213056950}
+  - component: {fileID: 213056951}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -722,6 +723,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RundUI
   roundText: {fileID: 632263793}
   gameManager: {fileID: 1336903428}
+--- !u!114 &213056951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213056946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72239ee109b8bd745969608bb7b6852f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClearUI
+  panel: {fileID: 1113463483}
 --- !u!1 &237759710
 GameObject:
   m_ObjectHideFlags: 0
@@ -4689,7 +4703,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 213056949}
   roundUI: {fileID: 213056950}
   cameraMove: {fileID: 237759712}
-  clearPanel: {fileID: 1113463483}
+  clearUI: {fileID: 213056951}
 --- !u!4 &1336903429
 Transform:
   m_ObjectHideFlags: 0
