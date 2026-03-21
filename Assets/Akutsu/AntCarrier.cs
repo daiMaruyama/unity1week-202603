@@ -12,6 +12,8 @@ public class AntCarrier : MonoBehaviour
     int _sugarHealth = 1; // 砂糖の残り具合
     int _maxHealth = 1;
     float _baseScale; // 画像の倍率に合わせる
+    float _volumeMax;
+    float _volumeMin;
 
     private void Awake()
     {
@@ -28,11 +30,13 @@ public class AntCarrier : MonoBehaviour
         _maxHealth = _antSpawn.Count;
         _sugarHealth = _maxHealth;
         _slider.onValueChanged.AddListener(OnSliderChanged);　// スライダーの値が変更された時にメソッドを呼ぶ設定
+        _volumeMax = _slider.maxValue - 0.05f;
+        _volumeMin = _slider.minValue + 0.05f;
     }
 
     void OnSliderChanged(float value)
     {
-        if (value >= 0.95f && !_hasFood && _sugarHealth > 0)// 右端に着いた
+        if (value >= _volumeMax && !_hasFood && _sugarHealth > 0)// 右端に着いた
         {
             _hasFood = true;
             _sugarHealth--;
@@ -44,7 +48,7 @@ public class AntCarrier : MonoBehaviour
             Debug.Log("エサをゲット！");
         }
 
-        if (value <= 0.05f && _hasFood && _antSpawn.Count > 0)// 左端に戻ってきた
+        if (value <= _volumeMin && _hasFood && _antSpawn.Count > 0)// 左端に戻ってきた
         {
             _hasFood = false;
             _antSpawn[0].SetActive(true);
