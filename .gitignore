@@ -100,3 +100,17 @@ InitTestScene*.unity*
 
 # ===== Shared assets folder (put large/binary assets here) =====
 /[Aa]ssets/Ignore/
+unity1week-202603.slnx
+.vscode/extensions.json
+.vscode/launch.json
+
+# DOTween (外部プラグイン)
+/[Aa]ssets/Plugins/Demigiant/
+/[Aa]ssets/Plugins/Demigiant.meta
+/[Aa]ssets/Resources/DOTween/
+/[Aa]ssets/Resources.meta
+/[Aa]ssets/Resources/
+
+# Recovery
+/[Aa]ssets/_Recovery/
+/[Aa]ssets/_Recovery.meta
