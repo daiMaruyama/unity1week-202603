@@ -123,6 +123,7 @@ public class InsectSpawn : MonoBehaviour
         int idx = Random.Range(0,spawnInsects.Count);
         questionInsect = spawnInsects[idx].GetComponent<Insect>()?.data;
         correctCount = CountInsect(questionInsect);
+        Debug.Log($"{questionInsect.insectName} の正解数: {correctCount}匹");
     }
 
     /// <summary>
