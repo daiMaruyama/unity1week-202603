@@ -1,9 +1,5 @@
-﻿using System.Reflection;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Unity.Burst.Intrinsics;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class CameraMove : MonoBehaviour
