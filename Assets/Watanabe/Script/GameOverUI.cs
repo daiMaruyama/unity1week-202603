@@ -25,13 +25,13 @@ public class GameOverUI : MonoBehaviour
     {
         SEManager.Instance.PlayButton();
         await Cysharp.Threading.Tasks.UniTask.Delay(200);
-        SceneManager.LoadScene("Title"); // ゲームシーン名に置き換え
+        TwoFadeManager.Instance.StartFadeOutAndLoadScene("Title"); // ゲームシーン名に置き換え
     }
 
-    public async void OnResturtButton()
+    public async void OnRestartButton()
     {
         SEManager.Instance.PlayButton();
         await Cysharp.Threading.Tasks.UniTask.Delay(200);
-        SceneManager.LoadScene("GameScene");
+        TwoFadeManager.Instance.StartFadeOutAndLoadScene("GameScene");
     }
 }
