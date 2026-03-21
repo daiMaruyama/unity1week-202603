@@ -2747,6 +2747,7 @@ GameObject:
   - component: {fileID: 998237029}
   - component: {fileID: 998237028}
   - component: {fileID: 998237027}
+  - component: {fileID: 998237032}
   m_Layer: 5
   m_Name: FadeCanvas
   m_TagString: Untagged
@@ -2761,7 +2762,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998237026}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cb085fac881cd5449203c76d538a1c5, type: 3}
   m_Name: 
@@ -2851,6 +2852,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &998237032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998237026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13ea41b20ebac6429ecbedb3f63ee4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TwoFadeManager
+  _fadeCanvasGroup: {fileID: 1986215844}
+  _fadeDuration: 1
 --- !u!1 &1015788014
 GameObject:
   m_ObjectHideFlags: 0
@@ -5396,6 +5411,7 @@ GameObject:
   - component: {fileID: 2026602636}
   - component: {fileID: 2026602635}
   - component: {fileID: 2026602634}
+  - component: {fileID: 2026602637}
   m_Layer: 5
   m_Name: Start Button
   m_TagString: Untagged
@@ -5479,18 +5495,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 998237027}
-        m_TargetAssemblyTypeName: FadeManager, Assembly-CSharp
-        m_MethodName: ToNextScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Test
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2026602635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5529,6 +5533,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026602632}
   m_CullTransparentMesh: 1
+--- !u!114 &2026602637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026602632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e296c026c2ccc354db9cbf866983c8a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeButton
+  targetSceneName: Test
 --- !u!1 &2051839860
 GameObject:
   m_ObjectHideFlags: 0
